@@ -33,11 +33,23 @@ export WAIT=True
 ```
 
 ## Build and Publish the Image
-Use the ./publish-skaffold.sh script to build and publish the image the configured registry.
+Use the ./build-deploy.sh script to build and publish the image the configured registry.
+
+```
+./build_deploy.sh --action=publish --debug
+
+```
 
 This will use Docker to build the image and publish.  You will need to ensure that your docker credentials are correctly configured to use gcloud for auth. 
 
 # Running and Debugging  
-Use ./start-skaffold.sh to build, publish, run and debug the container. 
+Use ./build-deploy.sh to build, publish, run and debug the container. 
+
+```
+./build_deploy.sh --action=dev --debug
+./build_deploy.sh --action=deploy --debug
+./build_deploy.sh --action=delete --debug
+```
+
 It will port-forward 5876 to localportso you can use VSCode's attach to remote python to single step debug. 
  

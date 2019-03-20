@@ -1,4 +1,4 @@
-
+# yaml resource file for deployment from skaffold
 
 apiVersion: v1
 kind: Namespace
