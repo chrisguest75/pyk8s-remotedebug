@@ -1,0 +1,32 @@
+apiVersion: skaffold/v1beta7
+kind: Config
+
+profiles:
+  - name: testk8s
+
+    build:
+      artifacts:
+      - image: pythonremotedebug
+        context: ./
+      tagPolicy:
+        sha256: {}
+
+    deploy:
+      kubectl:
+        manifests:
+          - ./k8s/deployment.yaml
+        flags:
+          global: ['--namespace=skaffolddebug']
+
+  - name: publish
+
+    build:
+      artifacts:
+      - image: pythonremotedebug
+        context: ./
+      tagPolicy:
+        envTemplate:
+          template: "{{.IMAGE_NAME}}:{{.SEMVER}}"
+      local: {}
+
+
