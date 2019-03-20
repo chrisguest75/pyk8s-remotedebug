@@ -1,18 +1,18 @@
-
-import time 
+import time
 import ptvsd
 import argparse
 import os
-import logging 
+
 
 def str2bool(v):
-  return v.lower() in ("yes", "true", "t", "1")
+    return v.lower() in ("yes", "true", "t", "1")
+
 
 if __name__ == "__main__":
     print(f"Enter {__name__}")
     parser = argparse.ArgumentParser(description='Import a bot test')
-    parser.add_argument('--debugger', dest='debugger', action='store_true')        
-    parser.add_argument('--wait', dest='wait', action='store_true')        
+    parser.add_argument('--debugger', dest='debugger', action='store_true')
+    parser.add_argument('--wait', dest='wait', action='store_true')
     args = parser.parse_args()
 
     debugger = False
@@ -38,9 +38,8 @@ if __name__ == "__main__":
             ptvsd.wait_for_attach()
             breakpoint()
 
-    count = 0 
+    count = 0
     while True:
         print(f"Hello World - {count}")
         count += 1
         time.sleep(10)
-
