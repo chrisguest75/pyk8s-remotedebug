@@ -14,6 +14,7 @@ WORKDIR /workbench
 COPY ./Pipfile /workbench/Pipfile
 COPY ./Pipfile.lock /workbench/Pipfile.lock 
 COPY ./main.py /workbench/main.py
+COPY ./logging_config.yaml /workbench/logging_config.yaml
 
 #RUN set -ex && pipenv install --deploy --system
 RUN pipenv install --deploy --system --dev

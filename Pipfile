@@ -8,6 +8,8 @@ ptvsd = "*"
 flake8 = "*"
 
 [packages]
+pyyaml = "*"
+python-json-logger = "*"
 
 [requires]
 python_version = "3.7"
