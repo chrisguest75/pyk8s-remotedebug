@@ -97,7 +97,7 @@ function main() {
 
     if [ -f .env ]; then
         echo "Importing .env file"
-        . .env
+        source "./.env"
     fi
     if [ -z ${SEMVER} ]; then
         echo "SEMVER not defined"
@@ -128,7 +128,7 @@ function main() {
                     skaffold delete --profile=testk8s --default-repo ${REPOSITORY_PATH} ${SKAFFOLD_DEBUG}
                 ;;                
                 docker)
-                    IMAGE_NAME=${REPOSITORY_PATH}/pythonremotedebug:${SEMVAR}
+                    IMAGE_NAME=${REPOSITORY_PATH}/pythonremotedebug:${SEMVER}
                     docker build -t ${IMAGE_NAME} .
 
                     ID=$(docker run -d --rm -e DEBUGGER=True -e WAIT=True -p 5678:5678 ${IMAGE_NAME})
