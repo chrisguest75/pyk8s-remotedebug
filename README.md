@@ -53,3 +53,13 @@ Use ./build-deploy.sh to build, publish, run and debug the container.
 
 It will port-forward 5876 to localportso you can use VSCode's attach to remote python to single step debug. 
  
+# Helm Deploy 
+
+Dry run test deploy 
+```
+helm install ./k8s/pyk8s-remotedebug-chart --name pyk8s-remotedebug-v1 --dry-run --debug --values ./k8s/values.yaml
+```
+
+```
+helm delete pyk8s-remotedebug --purge
+```

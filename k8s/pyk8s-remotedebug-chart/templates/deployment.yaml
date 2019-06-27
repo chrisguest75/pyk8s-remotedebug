@@ -1,0 +1,44 @@
+# yaml resource file for deployment from skaffold
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "{{ .Values.namespace.name }}"
+  labels: 
+    name: "{{ .Values.namespace.name }}"
+        
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ include "pyk8s-remotedebug-chart.fullname" . }}
+  namespace: "{{ .Values.namespace.name }}"  
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ include "pyk8s-remotedebug-chart.fullname" . }}
+        track: stable
+        version: 0.1.0
+    spec:
+      containers:
+        - name: skaffoldtest
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: debug
+              containerPort: 5678          
+          env:
+            - name: DEBUGGER
+              value: "True"
+            - name: WAIT
+              value: "True"
+
+          resources:
+            limits:
+              cpu: "1"            
+            requests:
+              cpu: "10m"
+
+
